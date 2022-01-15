@@ -5,16 +5,14 @@
       <div class="card-container" v-for="card in cards" :key="card._id">
         <div class="card">
           <div class="card-img">
-            <img
-              :src="`http://localhost:5005/sorted/birthday/${card.image}`"
-              alt=""
-            />
+            <img :src="`http://localhost:5005/${card.image}`" alt="" />
           </div>
-          <h3>
-            <span>{{ card.name }}</span> <br />
-            <!-- <span>{{ moment(card.birthday).locale("en").format("LL") }}</span> -->
-            <span>{{ date(card.birthday) }}</span>
-          </h3>
+          <div class="text">
+            <h3>
+              <span>{{ card.name }}</span> <br />
+              <span>{{ date(card.birthday) }}</span>
+            </h3>
+          </div>
         </div>
       </div>
     </div>
@@ -46,7 +44,6 @@ export default {
   },
   async created() {
     this.cards = await this.fetchSortedCard();
-    // this.cards = await API.getAllCard();
   },
 };
 </script>
@@ -65,16 +62,26 @@ export default {
   width: 100%;
 }
 .card {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin: 10px;
   padding: 10px;
+}
+.card-container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 }
 .card-img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   border: 1px solid white;
+  background-color: #fff;
+  margin: auto;
+}
+.card-img img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 </style>

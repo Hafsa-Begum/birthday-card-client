@@ -23,7 +23,7 @@
               <h3><span style="color: gray">Name:</span> {{ card.name }}</h3>
               <h3>
                 <span style="color: gray">Birthday:</span>
-                {{ moment(card.birthday).locale("en").format("LL") }}
+                {{ date(card.birthday) }}
               </h3>
             </div>
           </div>
@@ -44,6 +44,10 @@ export default {
     };
   },
   methods: {
+    date(x) {
+      const dt = this.moment(x).locale("en").format("L");
+      return dt;
+    },
     async fetchCards() {
       const res = await fetch("http://localhost:5005/api/cards");
       const data = await res.json();

@@ -15,8 +15,10 @@
           <img :src="`http://localhost:5005/${card.image}`" alt="" />
         </div>
         <div class="card-text">
-          <h3>Name: {{ card.name }}</h3>
-          <h3>Birthday: {{ card.birthday }}</h3>
+          <h3><span style="color: gray">Name:</span> {{ card.name }}</h3>
+          <h3>
+            <span style="color: gray">Birthday:</span> {{ date(card.birthday) }}
+          </h3>
         </div>
       </div>
     </div>
@@ -25,14 +27,20 @@
 
 <script>
 import { useRoute } from "vue-router";
+import moment from "moment";
 export default {
   name: "Card",
   data() {
     return {
       card: {},
+      moment: moment,
     };
   },
   methods: {
+    date(x) {
+      const dt = this.moment(x).locale("en").format("LL");
+      return dt;
+    },
     async fetchCard(id) {
       const res = await fetch(`http://localhost:5005/api/cards/${id}`);
       const data = await res.json();

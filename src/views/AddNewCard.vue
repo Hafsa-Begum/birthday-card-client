@@ -60,8 +60,9 @@ export default {
 
       formData.append("name", this.card.name);
       formData.append("birthday", this.card.birthday);
-      formData.append("image", this.card.image);
+      formData.append("image", this.image);
       console.log(formData);
+      alert("card added!");
       //   await axios.post("http://localhost:5005/api/cards/", this.card);
       //   const response = await this.addCard(formData);
 
