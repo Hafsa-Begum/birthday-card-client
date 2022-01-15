@@ -23,7 +23,7 @@
               <h3><span style="color: gray">Name:</span> {{ card.name }}</h3>
               <h3>
                 <span style="color: gray">Birthday:</span>
-                {{ card.birthday }}
+                {{ moment(card.birthday).locale("en").format("LL") }}
               </h3>
             </div>
           </div>
@@ -34,12 +34,13 @@
 </template>
 
 <script>
-// import API from "../api";
+import moment from "moment";
 export default {
   name: "Home",
   data() {
     return {
       cards: [],
+      moment: moment,
     };
   },
   methods: {
