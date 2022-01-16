@@ -71,8 +71,5 @@ export default {
 body {
   font-family: "Poppins", sans-serif;
   background-image: linear-gradient(to right, #741551ee, #b94f91ee, #f539adee);
-  /* background-color: #f8cbe7ee;
-  background-color: #f539adee;
-  background-color: #3f0c2cee; */
 }
 </style>

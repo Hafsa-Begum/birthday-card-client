@@ -4,7 +4,6 @@
       @submit.prevent="submitForm"
       class="add-form"
       enctype="multipart/form-data"
-      method="post"
     >
       <div class="form-control">
         <label>Name</label>
@@ -69,8 +68,8 @@ export default {
       //   });
       alert("card added!");
       // await axios.post("http://localhost:5005/api/cards/", formdata);
-      const response = await this.addCard(formData);
-      console.log(response);
+      // const response = await this.addCard(formData);
+      // console.log(response);
       // this.$router.push({
       //   name: "home",
       //   params: { message: response.message },

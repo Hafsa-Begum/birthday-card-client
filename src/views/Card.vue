@@ -22,6 +22,10 @@
         </div>
       </div>
     </div>
+    <!-- share the card -->
+    <div class="share-card" v-if="webShareApiSupported" title="Share Card">
+      <i class="fas fa-share-square" @click="shareViaWebShare"></i>
+    </div>
   </div>
 </template>
 
@@ -36,6 +40,11 @@ export default {
       moment: moment,
     };
   },
+  computed: {
+    webShareApiSupported() {
+      return navigator.share;
+    },
+  },
   methods: {
     date(x) {
       const dt = this.moment(x).locale("en").format("LL");
@@ -46,6 +55,11 @@ export default {
       const data = await res.json();
       console.log(data);
       return data;
+    },
+    shareViaWebShare() {
+      navigator.share({
+        url: ``,
+      });
     },
   },
   async created() {
@@ -61,9 +75,20 @@ export default {
 }
 .col {
   max-width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 20px auto;
+  text-align: center;
+}
+.share-card {
+  text-align: center;
+  height: 20px;
+}
+.share-card .fas {
+  font-size: 30px;
+  background-color: #000;
+  color: #f539adee;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 </style>
 
