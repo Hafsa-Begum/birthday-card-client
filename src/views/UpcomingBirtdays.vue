@@ -7,11 +7,16 @@
           <div class="card-img">
             <img :src="`http://localhost:5005/${card.image}`" alt="" />
           </div>
-          <div class="text">
+          <div class="card-text">
             <h3>
               <span>{{ card.name }}</span> <br />
-              <span>{{ date(card.birthday) }}</span>
+              <span style="color: gray">{{ date(card.birthday) }}</span>
             </h3>
+          </div>
+          <div class="btn-container">
+            <button @click="removeCard(card._id)" title="Delete Card">
+              <i class="fas fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -21,6 +26,7 @@
 
 <script>
 import moment from "moment";
+import axios from "axios";
 export default {
   name: "UpcomingBirthdays",
   data() {
@@ -41,6 +47,11 @@ export default {
       const data = await res.json();
       return data;
     },
+    async removeCard(id) {
+      await axios.delete(`http://localhost:5005/api/cards/${id}`);
+      this.$router.go();
+      alert("card deleted!");
+    },
   },
   async created() {
     this.cards = await this.fetchSortedCard();
@@ -50,7 +61,7 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 500px;
+  max-width: 600px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
@@ -60,11 +71,12 @@ export default {
 }
 .card-container {
   width: 100%;
+  background-color: #fff;
 }
 .card {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px;
   padding: 10px;
 }
 .card-container {
@@ -83,5 +95,15 @@ export default {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+}
+.card-text {
+  margin: auto;
+}
+.btn-container {
+  margin: auto;
+}
+.btn-container button i {
+  font-size: 20px;
+  color: red;
 }
 </style>

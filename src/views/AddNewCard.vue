@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <form @submit.prevent="submitForm" class="add-form">
+    <h1 style="text-align: center">Add New Card</h1>
+    <form @submit="submitForm" class="add-form">
       <div class="form-control">
         <label>Name</label>
         <input
@@ -45,7 +46,8 @@ export default {
     selectFile(e) {
       this.card.image = e.target.files[0];
     },
-    submitForm() {
+    submitForm(e) {
+      e.preventDefault();
       let formData = new FormData();
 
       formData.append("name", this.card.name);
@@ -58,6 +60,7 @@ export default {
           console.log(res);
         });
       alert("card added!");
+      e.target.reset();
     },
   },
 };

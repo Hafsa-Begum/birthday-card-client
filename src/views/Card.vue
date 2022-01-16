@@ -83,10 +83,10 @@ export default {
   height: 20px;
 }
 .share-card .fas {
-  font-size: 30px;
-  background-color: #000;
+  font-size: 20px;
+  background-color: #fff;
   color: #f539adee;
-  padding: 10px;
+  padding: 20px;
   border-radius: 50%;
   cursor: pointer;
 }
