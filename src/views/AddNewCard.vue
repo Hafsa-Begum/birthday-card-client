@@ -34,7 +34,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "AddNewCard",
   data() {
@@ -50,10 +50,10 @@ export default {
     selectFile(e) {
       this.card.image = e.target.files[0];
     },
-    // async addCard(card) {
-    //   const res = await axios.post("http://localhost:5005/api/cards/", card);
-    //   return res.data;
-    // },
+    async addCard(card) {
+      const res = await axios.post("http://localhost:5005/api/cards/", card);
+      return res.data;
+    },
     async submitForm() {
       console.log("hi", this.card);
       let formData = new FormData();
@@ -61,11 +61,16 @@ export default {
       formData.append("name", this.card.name);
       formData.append("birthday", this.card.birthday);
       formData.append("image", this.image);
-      console.log(formData);
-      alert("card added!");
-      //   await axios.post("http://localhost:5005/api/cards/", this.card);
-      //   const response = await this.addCard(formData);
 
+      // axios
+      //   .post("http://localhost:5005/api/cards/", formData, {})
+      //   .then((response) => {
+      //     console.log(response);
+      //   });
+      alert("card added!");
+      // await axios.post("http://localhost:5005/api/cards/", formdata);
+      const response = await this.addCard(formData);
+      console.log(response);
       // this.$router.push({
       //   name: "home",
       //   params: { message: response.message },
