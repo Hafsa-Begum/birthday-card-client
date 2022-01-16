@@ -1,13 +1,22 @@
 <template>
   <v-container>
     <ul>
-      <li><router-link class="active" to="/">All Card</router-link></li>
       <li>
-        <router-link class="active" to="addNewCard">Add Card</router-link>
+        <router-link class="active" to="/"
+          ><i style="color: #f539adee" class="fas fa-home"></i> All
+          Card</router-link
+        >
+      </li>
+      <li>
+        <router-link class="active" to="addNewCard"
+          ><i style="color: #f539adee" class="fas fa-plus-circle"></i> New
+          Card</router-link
+        >
       </li>
       <li>
         <router-link class="active" to="/upcomingBirthdays"
-          >Upcoming Birthdays</router-link
+          ><i style="color: #f539adee" class="fas fa-birthday-cake"></i>
+          Upcoming Birthdays</router-link
         >
       </li>
     </ul>

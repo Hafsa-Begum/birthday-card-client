@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <form
-      @submit.prevent="submitForm"
-      class="add-form"
-      enctype="multipart/form-data"
-    >
+    <form @submit.prevent="submitForm" class="add-form">
       <div class="form-control">
         <label>Name</label>
         <input
@@ -49,31 +45,19 @@ export default {
     selectFile(e) {
       this.card.image = e.target.files[0];
     },
-    async addCard(card) {
-      const res = await axios.post("http://localhost:5005/api/cards/", card);
-      return res.data;
-    },
-    async submitForm() {
-      console.log("hi", this.card);
+    submitForm() {
       let formData = new FormData();
 
       formData.append("name", this.card.name);
       formData.append("birthday", this.card.birthday);
-      formData.append("image", this.image);
+      formData.append("image", this.card.image, this.card.image.name);
 
-      // axios
-      //   .post("http://localhost:5005/api/cards/", formData, {})
-      //   .then((response) => {
-      //     console.log(response);
-      //   });
+      axios
+        .post("http://localhost:5005/api/cards/", formData, {})
+        .then((res) => {
+          console.log(res);
+        });
       alert("card added!");
-      // await axios.post("http://localhost:5005/api/cards/", formdata);
-      // const response = await this.addCard(formData);
-      // console.log(response);
-      // this.$router.push({
-      //   name: "home",
-      //   params: { message: response.message },
-      // });
     },
   },
 };
