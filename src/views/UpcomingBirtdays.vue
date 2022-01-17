@@ -104,6 +104,6 @@ export default {
 }
 .btn-container button i {
   font-size: 20px;
-  color: red;
+  color: #f539adee;
 }
 </style>
